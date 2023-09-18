@@ -2,8 +2,8 @@ from huggingface_hub import hf_hub_download
 import pandas as pd
 from llama_cpp import Llama
 import datetime
-N_CTX = 4096
 
+N_CTX = 4096
 end = datetime.datetime.today()
 start = datetime.datetime.today() + datetime.timedelta(days=-7)
 
@@ -25,3 +25,4 @@ lcpp_llm = Llama(
 text = pd.read_csv("corpus.csv")
 text['received_at'] = pd.to_datetime(text['received_at'])
 text = text[(text['received_at']>=start) & (text['received_at']<=end)]
+text['n_tokens'] = text["text"].apply(lambda x :len(lcpp_llm.tokenizer().encode(x)))

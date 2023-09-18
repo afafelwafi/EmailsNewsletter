@@ -1,5 +1,4 @@
 huggingface-hub==0.17.1
-llama-cpp-python==0.1.78
 nylas==5.14.1
 streamlit==1.26.0
 pyngrok==4.1.1

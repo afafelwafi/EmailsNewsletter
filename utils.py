@@ -26,7 +26,7 @@ def filter(elems:list,indices_not:list = []):
     else: 
         return [],[]
 
-def chunks(text:pd.DataFrame,N_CTX;int)-> list:
+def chunks(text:pd.DataFrame,N_CTX:int)-> list:
     text.reset_index(drop=True,inplace=True)
     tokens = text.n_tokens.to_list()
     out_3 = [[sum([y,x,z]),i,j,k] for i,y in enumerate(tokens) for j,x in enumerate(tokens) for k,z in enumerate(tokens) if i!=j and j!=k and i!=k]

@@ -27,8 +27,6 @@ newsletters['received_at'] = pd.to_datetime(newsletters['received_at'])
 newsletters = newsletters[(newsletters['received_at']>=start) & (newsletters['received_at']<=end)]
 newsletters['n_tokens'] = newsletters["text"].apply(lambda x :len(lcpp_llm.tokenizer().encode(x)))
 
-
-
 # events
 events= pd.read_csv("events_corpus.csv",index=False)
 

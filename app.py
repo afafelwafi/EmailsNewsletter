@@ -13,20 +13,19 @@ def make_template(text1):
            """
 def get_response(radio_select):
     if radio_select =="All":
-        text1 = str(newsletters['text'].to_list())
+        text1 = newsletters.copy()
     else:
-        text1 = str(newsletters[newsletters['from']==radio_select]['text'].to_list())
+        text1 = newsletters[newsletters['from']==radio_select]
 
     # check if nb_tokens >= nb_ctx :
-    if len(lcpp_llm.tokenizer().encode(text1)) < N_CTX: #nb_ctx:
-        template = make_template(text1)
+    if text1['n_tokens'].sum() < N_CTX : #nb_ctx:
+        template = make_template(str(text1['text'].to_list()))
         response = lcpp_llm(prompt=template,  max_tokens=256,temperature=0,top_p=0.95,repeat_penalty=1.2,top_k=50,stop = ['USER:'], # Dynamic stopping when such token is detected.
         echo=False # return the prompt
         )
         return response["choices"][0]["text"].split("\n")
     else:
-        # do email by email
-        text1 = chunks(newsletters[newsletters['from']==radio_select],N_CTX)
+        text1 = chunks(text1,N_CTX-100)
         responses = ""
         for text_i in text1:
             template = make_template(text_i)
@@ -48,7 +47,7 @@ def main():
         else:
             responses = get_response(query)
             for resp in responses: 
-                st.markdown(resp)
+                st.markdown(resp.replace("•",""))
 
 
 if __name__ == '__main__':

@@ -30,6 +30,6 @@ newsletters['n_tokens'] = newsletters["text"].apply(lambda x :len(lcpp_llm.token
 
 
 # events
-events= pd.read_csv("events_corpus.csv")
+events= pd.read_csv("events_corpus.csv",index=False)
 
 

@@ -67,4 +67,4 @@ if __name__ == "__main__":
     corpus = list(map(clean_content, bodies))
     corpus = list(map(remove_footer, corpus))
     corpus_df = format_csv(messages, corpus)
-    corpus_df.to_csv("corpus.csv", index=False)
+    corpus_df.to_csv("newsletters_corpus.csv", index=False)

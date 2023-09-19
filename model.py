@@ -3,11 +3,10 @@ import pandas as pd
 from llama_cpp import Llama
 import datetime
 
+
 N_CTX = 4096
 end = datetime.datetime.today()
 start = datetime.datetime.today() + datetime.timedelta(days=-7)
-
-
 
 model_name_or_path = "TheBloke/Llama-2-7B-chat-GGML"
 model_basename = "llama-2-7b-chat.ggmlv3.q4_0.bin" # the model is in bin format
@@ -22,7 +21,15 @@ lcpp_llm = Llama(
     n_ctx=N_CTX, # Context window
 )
 
-text = pd.read_csv("corpus.csv")
-text['received_at'] = pd.to_datetime(text['received_at'])
-text = text[(text['received_at']>=start) & (text['received_at']<=end)]
-text['n_tokens'] = text["text"].apply(lambda x :len(lcpp_llm.tokenizer().encode(x)))
+# newsletters 
+newsletters = pd.read_csv("newsletters_corpus.csv")
+newsletters['received_at'] = pd.to_datetime(newsletters['received_at'])
+newsletters = newsletters[(newsletters['received_at']>=start) & (newsletters['received_at']<=end)]
+newsletters['n_tokens'] = newsletters["text"].apply(lambda x :len(lcpp_llm.tokenizer().encode(x)))
+
+
+
+# events
+events= pd.read_csv("events_corpus.csv")
+
+

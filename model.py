@@ -28,6 +28,6 @@ newsletters = newsletters[(newsletters['received_at']>=start) & (newsletters['re
 newsletters['n_tokens'] = newsletters["text"].apply(lambda x :len(lcpp_llm.tokenizer().encode(x)))
 
 # events
-events= pd.read_csv("events_corpus.csv",index=False)
+events= pd.read_csv("events_corpus.csv",index_col=0)
 
 

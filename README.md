@@ -69,16 +69,15 @@ Summary: This week's issue covers new tools for LLM fine-tuning, a hands-on guid
 - Python 3
 - Nylas API
 - dotenv
-- AI Text Summarization (Hugging Face, GPT, etc.)
+- AI Text Summarization (Hugging Face, LLama 7B quanticized)
 
 ---
 
 ## 🧩 To-Do / Improvements
 
-- [ ] Web interface for interactive summaries.
 - [ ] Categorization by sender/topic.
 - [ ] Integration with Google Calendar or Notion for tracking.
-- [ ] Export summaries to PDF/Markdown.
+- [ ] Export summaries to PDF/Markdown. (streamlit app is already integrated in the code)
 
 ---
 
@@ -88,6 +87,18 @@ Feel free to fork this repo, submit issues, or open PRs! Contributions are welco
 
 ---
 
-## 📜 License
 
-MIT License. See `LICENSE` file for details.
+## 🖥️ Streamlit App
+
+A lightweight Streamlit interface is included so you can:
+
+- 🔍 View summaries in an interactive dashboard
+- 📤 Export summaries directly from the UI
+
+To run the app:
+
+```bash
+streamlit run app.py
+```
+
+Make sure your `.env` file is properly configured before launching the app.
